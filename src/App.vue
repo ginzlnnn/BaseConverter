@@ -1,15 +1,16 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <H1>Convert Number</H1>
+  <InputNumber :lstBase=[2,8,10,12,16] />
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+
+import InputNumber from './components/InputNumber.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    InputNumber
   }
 }
 </script>
