@@ -1,6 +1,12 @@
 <template>
   <H1>Convert Number</H1>
-  <InputNumber :lstBase=[2,8,10,12,16] />
+  <div v-for="base in [...Array(15).keys()].map(i => i + 2)" :key="base" style="display:inline-block">
+    <input type="checkbox" :id="base" :value="base" v-model="checkedNum">
+    <label :for="Base">Base {{ base }}</label>
+  </div>
+  <br>
+<span>Checked Num: {{ checkedNum }}</span>
+  <InputNumber :lstBase=lstNumSorted() />
 </template>
 
 <script>
@@ -11,6 +17,16 @@ export default {
   name: 'App',
   components: {
     InputNumber
+  },
+  data()  { return{
+    checkedNum: []
+  }},
+  methods: {
+    lstNumSorted(){
+      return this.checkedNum.sort(function(a, b){
+        return (a > b) ? 1 : -1;
+      });
+    }
   }
 }
 </script>
