@@ -35,23 +35,18 @@ export default {
             if(e.target.value === ""){
                 this.changeValueNum(null)
             } else {
-                var d;
-                d = this.parseBigInt(e.target.value, base)
-                this.changeValueNum(d)
-                console.log(d)
+                this.changeValueNum(this.parseBigInt(e.target.value, base))
             }
             this.currentBase = base
             this.currentText = e.target.value
         },
 
         showByBase(base){
-
             return this.valueNum != null ? base == this.currentBase ? this.currentText : this.valueNum.toString(base) : ""
             
         },
 
         resetCurrent(){
-            console.log(this.valueNum)
             this.currentBase = 0,
             this.currentText = ""
         },
@@ -64,12 +59,7 @@ export default {
             var bigint = BigInt(0)
             for (var i = 0; i < str.length; i++) {
                 var code = str[str.length-1-i].charCodeAt(0) - 48; if(code >= 10) code -= 39
-                var pow = this.powBigInt(BigInt(base),i)
-                var rr = pow * BigInt(code)
-                bigint += rr
-                if(base == 10){
-                    console.log(base + ' '+ i + ' '+ pow + ' ' + code + ' ' + rr)
-                }
+                bigint += this.powBigInt(BigInt(base),i) * BigInt(code)
             }
             return bigint
         },
