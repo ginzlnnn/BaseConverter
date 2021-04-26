@@ -1,29 +1,30 @@
 <template>
-  <H1>Convert Number</H1>
-  <div v-for="base in [...Array(15).keys()].map(i => i + 2)" :key="base" style="display:inline-block">
-    <input type="checkbox" :id="base" :value="base" v-model="checkedNum">
-    <label :for="Base">Base {{ base }}</label>
+  <h1>Convert Number</h1>
+  <div v-for="base in [...Array(35).keys()].map(i => i + 2)" :key="base" style="display:inline-block; margin:5px">
+    <input type="checkbox" :id="base" :value="base" v-model="selectedBase">
+    <label :for="base"> Base {{ base }}</label>
   </div>
   <br>
-<span>Checked Num: {{ checkedNum }}</span>
-  <InputNumber :lstBase=lstNumSorted() />
+  <br>
+<span><b>Selected Base : </b>{{ selectedBase }}</span>
+  <ResultPanel :lstBase=lstNumSorted() />
 </template>
 
 <script>
 
-import InputNumber from './components/InputNumber.vue'
+import ResultPanel from './components/ResultPanel.vue'
 
 export default {
   name: 'App',
   components: {
-    InputNumber
+    ResultPanel
   },
   data()  { return{
-    checkedNum: []
+    selectedBase: [2, 8, 10, 16]
   }},
   methods: {
     lstNumSorted(){
-      return this.checkedNum.sort(function(a, b){
+      return this.selectedBase.sort(function(a, b){
         return (a > b) ? 1 : -1;
       });
     }
